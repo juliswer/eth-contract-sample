@@ -3,10 +3,10 @@ pragma solidity ^0.8.6;
 
 contract TasksContract {
 
-    uint public taskCounter = 0;
+    uint256 public taskCounter = 0;
 
     struct Task {
-        uint id;
+        uint256 id;
         string title;
         string description;
         bool done;
@@ -17,7 +17,7 @@ contract TasksContract {
 
     function createTask(string memory _title,  string memory _description) public {
         tasks[taskCounter] = Task(taskCounter, _title, _description, false, block.timestamp);
-        taskCounter++;
+        taskCounter++; 
     }
 
     // todo: function toggleDone() {}
