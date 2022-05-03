@@ -46,4 +46,5 @@ contract("TasksContract", () => {
     assert.notEqual(result.title, "");
     assert.notEqual(result.description, "");
   });
+
 });
