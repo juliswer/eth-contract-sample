@@ -16,9 +16,9 @@ contract("TasksContract", () => {
 
   it("Get tasks List", async () => {
     const taskCounter = await this.tasksContract.taskCounter();
-    const task = await this.tasksContract.tasks(taskCounter - 1);
+    const task = await this.tasksContract.tasks(taskCounter);
 
-    assert.equal(task.id.toNumber(), taskCounter - 1);
+    assert.equal(task.id.toNumber(), taskCounter);
 
   });
 });

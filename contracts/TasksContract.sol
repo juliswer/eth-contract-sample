@@ -20,8 +20,8 @@ contract TasksContract {
     mapping (uint256 => Task) public tasks;
 
     function createTask(string memory _title,  string memory _description) public {
-        tasks[taskCounter] = Task(taskCounter, _title, _description, false, block.timestamp);
         taskCounter++;
+        tasks[taskCounter] = Task(taskCounter, _title, _description, false, block.timestamp);
     }
 
     function toggleDone(uint _id) public {
