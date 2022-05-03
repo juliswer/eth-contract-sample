@@ -3,8 +3,8 @@ pragma solidity ^0.8.6;
 
 contract TasksContract {
 
-    uint256 public taskCounter = 0;
-    string public message = "hello";
+    uint public taskCounter = 0;
+    
     struct Task {
         uint256 id;
         string title;
