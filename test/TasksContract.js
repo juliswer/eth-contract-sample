@@ -26,14 +26,24 @@ contract("TasksContract", () => {
   });
 
   it("Task created succesfully", async () => {
-    const result = await this.tasksContract.createTask("some task", "description two")
-  })
+    const result = await this.tasksContract.createTask(
+      "some task",
+      "description two"
+    );
+    const taskEvent = result.logs[0].args;
+    const taskCounter = await this.tasksContract.taskCounter();
 
-  it("Get single task", async (id) => {
-    const result = await this.tasksContract.tasks(id)
+    assert.equal(taskCounter, 2);
+    assert.equal(taskEvent.id.toNumber(), 2);
+    assert.equal(taskEvent.title, "some task");
+    assert.equal(taskEvent.description, "description two");
+    assert.equal(taskEvent.done, false);
+  });
+
+  it("Get single task", async (id = 2) => {
+    const result = await this.tasksContract.tasks(id);
     assert.equal(result.id.toNumber(), id);
     assert.notEqual(result.title, "");
     assert.notEqual(result.description, "");
-  })
-
+  });
 });
