@@ -47,4 +47,13 @@ contract("TasksContract", () => {
     assert.notEqual(result.description, "");
   });
 
+  it("Task toggle done", async () => {
+    const result = await this.tasksContract.toggleDone(1);
+    const taskEvent = result.logs[0].args;
+    const task = await this.tasksContract.tasks(1);
+
+    assert.equal(task.done, true);
+    assert.equal(taskEvent.done, true);
+    assert.equal(taskEvent.id.toNumber(), 1);
+  });
 });
