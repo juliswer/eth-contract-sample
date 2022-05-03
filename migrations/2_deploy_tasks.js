@@ -1,4 +1,4 @@
-const TasksContract = artifacts.require("TasksContract.sol");
+const TasksContract = artifacts.require("TasksContract");
 
 module.exports = function (deployer) {
   deployer.deploy(TasksContract);
