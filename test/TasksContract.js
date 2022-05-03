@@ -24,4 +24,9 @@ contract("TasksContract", () => {
     assert.equal(task.done, false);
     assert.equal(taskCounter, 1);
   });
+
+  it("Task created succesfully", async() => {
+    const result = await this.tasksContract.createTask("some task", "description two")
+  })
+
 });
