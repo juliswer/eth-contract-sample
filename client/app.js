@@ -6,11 +6,10 @@ App = {
     App.loadEthereum();
   },
 
-  loadEthereum: () => {
-    if (typeof window.ethereum == "undefined") {
-      alert("Please install metamask");
-    } else {
+  loadEthereum: async () => {
+    if(window.ethereum) {
         App.web3Provider = window.ethereum;
+        await window.ethereum.request({method: 'eth_requestAccounts'});
     }
   },
 };
