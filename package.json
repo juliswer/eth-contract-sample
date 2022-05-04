@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "lite-server": "^2.6.1"
+  },
+  "name": "eth-contract-sample",
+  "version": "1.0.0",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "dev": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juliswer/eth-contract-sample.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/juliswer/eth-contract-sample/issues"
+  },
+  "homepage": "https://github.com/juliswer/eth-contract-sample#readme",
+  "description": ""
+}
