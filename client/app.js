@@ -1,7 +1,9 @@
 App = {
+  contracts: {},
+
   init: () => {
     App.loadEthereum();
-    App.loadContracts()
+    App.loadContracts();
   },
 
   loadEthereum: async () => {
@@ -18,7 +20,12 @@ App = {
   loadContracts: async () => {
     const res = await fetch("TasksContract.json");
     const tasksContractJSON = await res.json();
-    console.log(tasksContractJSON);
+
+    App.contracts.taskContract = TruffleContract(tasksContractJSON);
+
+    App.contracts.taskContract.setProvider(App.web3Provider);
+
+    App.tasksContract = await App.contracts.taskContract.deployed();
   },
 };
 
