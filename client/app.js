@@ -4,6 +4,7 @@ App = {
   init: () => {
     App.loadEthereum();
     App.loadContracts();
+    App.loadAccount();
   },
 
   loadEthereum: async () => {
@@ -17,6 +18,11 @@ App = {
     }
   },
 
+  loadAccount: async () => {
+    const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+    App.account = accounts[0];
+  },
+
   loadContracts: async () => {
     const res = await fetch("TasksContract.json");
     const tasksContractJSON = await res.json();
@@ -26,6 +32,17 @@ App = {
     App.contracts.taskContract.setProvider(App.web3Provider);
 
     App.tasksContract = await App.contracts.taskContract.deployed();
+  },
+
+  render: async () => {
+    document.getElementById("")
+  },
+
+  createTask: async (title, description) => {
+    const result = await App.tasksContract.createTask(title, description, {
+      from: App.account,
+    });
+    console.log(result.logs[0].args);
   },
 };
 
