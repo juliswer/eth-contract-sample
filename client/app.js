@@ -56,12 +56,21 @@ App = {
 
       let taskElement = `
         <div class="card bg-dark rounded mb-2">
-          <div className="card-header">
+          <div class="card-header d-flex justify-content-between align-items-center">
             <span>${taskTitle}</span>
+            <div class="form-check form-switch">
+              <input class="form-check-input" data-id="${taskId}" type="checkbox" ${
+        taskDone && "checked"
+      } onChange="App.toggleDone(this)" /> 
+            </div>
           </div>
-          <div className="card-body">
+          <div class="card-body">
             <p>${taskDescription}</p>
+            <p class="text-muted">Task was created ${new Date(
+              taskCreated * 1000
+            ).toLocaleString()}</p>
           </div>
+            
         </div>
       `;
       html += taskElement;
@@ -74,5 +83,15 @@ App = {
       from: App.account,
     });
     console.log(result.logs[0].args);
+    window.location.reload();
+  },
+
+  toggleDone: async (element) => {
+    const taskId = element.dataset.id;
+
+    await App.tasksContract.toggleDone(taskId, {
+      from: App.account,
+    });
+    window.location.reload();
   },
 };
