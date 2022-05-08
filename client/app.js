@@ -1,10 +1,11 @@
 App = {
   contracts: {},
 
-  init: () => {
-    App.loadEthereum();
-    App.loadContracts();
-    App.loadAccount();
+  init: async () => {
+    await App.loadEthereum();
+    await App.loadContracts();
+    await App.loadAccount();
+    await App.taskCounter()
     App.render();
   },
 
@@ -39,6 +40,11 @@ App = {
     document.getElementById("account").innerText = App.account
   },
 
+  renderTasks: async () => {
+    const taskCounter = await App.tasksContract.tasksCounter()
+    console.log(taskCounter)
+  },
+
   createTask: async (title, description) => {
     const result = await App.tasksContract.createTask(title, description, {
       from: App.account,
@@ -46,5 +52,3 @@ App = {
     console.log(result.logs[0].args);
   },
 };
-
-App.init();
