@@ -43,10 +43,30 @@ App = {
   renderTasks: async () => {
     const taskCounter = await App.tasksContract.taskCounter();
     const taskCounterNumber = taskCounter.toNumber();
+
+    let html = "";
+
     for (let i = 0; i <= taskCounterNumber; i++) {
-      const tasks = await App.tasksContract.tasks(i)
-      console.log(tasks)
+      const task = await App.tasksContract.tasks(i);
+      const taskId = task[0];
+      const taskTitle = task[1];
+      const taskDescription = task[2];
+      const taskDone = task[3];
+      const taskCreated = task[4];
+
+      let taskElement = `
+        <div class="card bg-dark rounded mb-2">
+          <div className="card-header">
+            <span>${taskTitle}</span>
+          </div>
+          <div className="card-body">
+            <p>${taskDescription}</p>
+          </div>
+        </div>
+      `;
+      html += taskElement;
     }
+    document.querySelector("#tasksList").innerHTML = html;
   },
 
   createTask: async (title, description) => {
