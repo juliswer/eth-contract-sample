@@ -5,6 +5,7 @@ App = {
     App.loadEthereum();
     App.loadContracts();
     App.loadAccount();
+    App.render();
   },
 
   loadEthereum: async () => {
@@ -35,7 +36,7 @@ App = {
   },
 
   render: async () => {
-    document.getElementById("")
+    document.getElementById("account").innerText = App.account
   },
 
   createTask: async (title, description) => {
