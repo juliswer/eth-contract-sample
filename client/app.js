@@ -5,7 +5,7 @@ App = {
     await App.loadEthereum();
     await App.loadContracts();
     await App.loadAccount();
-    await App.taskCounter()
+    await App.renderTasks();
     App.render();
   },
 
@@ -37,12 +37,16 @@ App = {
   },
 
   render: async () => {
-    document.getElementById("account").innerText = App.account
+    document.getElementById("account").innerText = App.account;
   },
 
   renderTasks: async () => {
-    const taskCounter = await App.tasksContract.tasksCounter()
-    console.log(taskCounter)
+    const taskCounter = await App.tasksContract.taskCounter();
+    const taskCounterNumber = taskCounter.toNumber();
+    for (let i = 0; i <= taskCounterNumber; i++) {
+      const tasks = await App.tasksContract.tasks(i)
+      console.log(tasks)
+    }
   },
 
   createTask: async (title, description) => {
